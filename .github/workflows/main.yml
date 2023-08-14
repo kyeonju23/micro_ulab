@@ -1,0 +1,55 @@
+name: Micro-ULab
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y git make
+    - name: Clone ulab repository
+      run: |
+        git clone https://github.com/v923z/micropython-ulab.git ulab
+    - name: Clone micropython repository
+      run: |
+        git clone https://github.com/micropython/micropython.git
+        mkdir firm
+    - name: Build MicroPython
+      run: |
+        export BUILD_DIR=$(pwd)
+        cd $BUILD_DIR/micropython/
+        git clone -b v5.0.2 --recursive https://github.com/espressif/esp-idf.git esp-idf
+        cd esp-idf
+        ./install.sh
+        . ./export.sh
+        cd $BUILD_DIR/micropython/mpy-cross
+        make
+        cd $BUILD_DIR/micropython/ports/esp32
+        make submodules
+        
+        cd $BUILD_DIR/micropython/ports/esp32
+        echo "BOARD = GENERIC" | cat - Makefile > temp && mv temp Makefile
+        echo "USER_C_MODULES = \$(BUILD_DIR)/ulab/code/micropython.cmake" | cat - Makefile > temp && mv temp Makefile
+        make
+        cp $BUILD_DIR/micropython/ports/esp32/build-GENERIC/firmware.bin ../../../firm
+        
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: micropython-firmware
+        path: firm/firmware.bin
