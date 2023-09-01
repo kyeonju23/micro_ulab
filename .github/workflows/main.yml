@@ -27,13 +27,13 @@ jobs:
         git clone https://github.com/v923z/micropython-ulab.git ulab
     - name: Clone micropython repository
       run: |
-        git clone https://github.com/micropython/micropython.git
+        git clone -b v1.20.0 --recursive https://github.com/micropython/micropython.git
         mkdir firm
     - name: Build MicroPython
       run: |
         export BUILD_DIR=$(pwd)
         cd $BUILD_DIR/micropython/
-        git clone -b v5.1.1 --recursive https://github.com/espressif/esp-idf.git esp-idf
+        git clone -b v5.0.2 --recursive https://github.com/espressif/esp-idf.git esp-idf
         cd esp-idf
         ./install.sh
         . ./export.sh
