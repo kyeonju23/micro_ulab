@@ -27,7 +27,7 @@ jobs:
         git clone https://github.com/v923z/micropython-ulab.git ulab
     - name: Clone micropython repository
       run: |
-        git clone --recursive https://github.com/micropython/micropython.git
+        git clone https://github.com/micropython/micropython.git
         mkdir firm
     - name: Build MicroPython
       run: |
