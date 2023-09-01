@@ -33,7 +33,7 @@ jobs:
       run: |
         export BUILD_DIR=$(pwd)
         cd $BUILD_DIR/micropython/
-        git clone -b v5.0.2 --recursive https://github.com/espressif/esp-idf.git esp-idf
+        git clone -b v5.1.1 --recursive https://github.com/espressif/esp-idf.git esp-idf
         cd esp-idf
         ./install.sh
         . ./export.sh
