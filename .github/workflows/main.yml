@@ -43,10 +43,10 @@ jobs:
         make submodules
         
         cd $BUILD_DIR/micropython/ports/esp32
-        echo "BOARD = GENERIC" | cat - Makefile > temp && mv temp Makefile
+        echo "BOARD = ESP32_GENERIC" | cat - Makefile > temp && mv temp Makefile
         echo "USER_C_MODULES = \$(BUILD_DIR)/ulab/code/micropython.cmake" | cat - Makefile > temp && mv temp Makefile
         make
-        cp $BUILD_DIR/micropython/ports/esp32/build-GENERIC/firmware.bin ../../../firm
+        cp $BUILD_DIR/micropython/ports/esp32/build-ESP32_GENERIC/firmware.bin ../../../firm
         
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
