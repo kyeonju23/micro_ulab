@@ -5,12 +5,12 @@ This repository provides an automated workflow using GitHub Actions to generate 
 ## Ref) [micropython-ulab](https://github.com/v923z/micropython-ulab)
 Following the examples set in the referenced repositories, I successfully created the latest firmware using GitHub Actions.
 
-## Version
+## Version [![Micro-ULab](https://github.com/kyeonju23/micro_ulab/actions/workflows/main.yml/badge.svg)](https://github.com/kyeonju23/micro_ulab/actions/workflows/main.yml)
 - [Micropython](https://github.com/micropython/micropython.git): v1.20.0
 - [ESP-IDF](https://github.com/espressif/esp-idf.git): v5.0.2
 - [ULab](https://github.com/v923z/micropython-ulab): v6.0.12
 
-[![Micro-ULab](https://github.com/kyeonju23/micro_ulab/actions/workflows/main.yml/badge.svg)](https://github.com/kyeonju23/micro_ulab/actions/workflows/main.yml)
+
 A version of esp-idf that is compatible with the latest version of micropython.
 - Micropython v1.19 & ESP-IDF v4.4.x (espnow X)
 - Micropython v1.20 & ESP-IDF v5.0.x (espnow O)
